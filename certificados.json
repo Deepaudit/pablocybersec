@@ -1,0 +1,16 @@
+{
+  "PCS-7A92-BF14": {
+    "aluno": "Samuel Thalles",
+    "curso": "Pentest em Aplicações Web & Redes",
+    "emissao": "12/07/2026",
+    "carga_horaria": "40 horas",
+    "status": "Válido"
+  },
+  "PCS-3C88-E291": {
+    "aluno": "Yuri Silva",
+    "curso": "Exploitação Avançada de Infraestrutura",
+    "emissao": "05/06/2026",
+    "carga_horaria": "60 horas",
+    "status": "Válido"
+  }
+}
