@@ -1,0 +1,214 @@
+:root {
+    --bg-color: #050505;
+    --card-bg: #0d0d0d;
+    --primary-red: #ff0000;
+    --neon-glow: #e50914;
+    --text-white: #ffffff;
+    --text-gray: #777777;
+    --border-dark: #1f1f1f;
+    --success-green: #00ff66;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-white);
+    font-family: 'Courier New', Courier, monospace; /* Fonte estilo terminal militar */
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: radial-gradient(circle at 50% 50%, #150202 0%, #050505 80%);
+}
+
+.container {
+    width: 100%;
+    max-width: 600px;
+    padding: 20px;
+}
+
+.logo-area {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.logo-area h1 {
+    font-size: 2.3rem;
+    color: var(--text-white);
+    margin: 0;
+    letter-spacing: 3px;
+    font-weight: 900;
+    text-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+.subtitle {
+    color: var(--primary-red);
+    font-size: 0.8rem;
+    letter-spacing: 5px;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--primary-red);
+    border-radius: 4px;
+    padding: 25px;
+    box-shadow: 0 0 20px rgba(229, 9, 20, 0.15);
+}
+
+.validador-box h2 {
+    margin-top: 0;
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--border-dark);
+    padding-bottom: 15px;
+}
+
+.text-red { color: var(--primary-red); }
+
+.instruction {
+    color: var(--text-gray);
+    font-size: 0.85rem;
+    line-height: 1.6;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: #000000;
+    border: 1px solid var(--border-dark);
+    padding: 5px 15px;
+    margin-top: 25px;
+    border-radius: 3px;
+}
+
+.terminal-prefix {
+    color: var(--primary-red);
+    font-weight: bold;
+    margin-right: 10px;
+    font-size: 1.1rem;
+}
+
+input[type="text"] {
+    flex: 1;
+    background: transparent;
+    border: none;
+    padding: 10px 0;
+    color: var(--text-white);
+    font-size: 1rem;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+input[type="text"]:focus {
+    outline: none;
+}
+
+.input-error {
+    border: 1px solid var(--primary-red) !important;
+    animation: shake 0.2s ease-in-out 2;
+}
+
+button {
+    background-color: var(--primary-red);
+    color: white;
+    border: none;
+    padding: 8px 20px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    font-weight: bold;
+    font-family: 'Courier New', Courier, monospace;
+    transition: all 0.2s;
+    box-shadow: 0 0 8px rgba(255, 0, 0, 0.4);
+}
+
+button:hover {
+    background-color: #fff;
+    color: #000;
+    box-shadow: 0 0 12px #fff;
+}
+
+.result-box {
+    margin-top: 25px;
+    border-radius: 2px;
+    font-size: 0.9rem;
+    animation: scanEffect 0.4s ease-out;
+}
+
+.res-header {
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.res-content {
+    padding: 20px;
+    background-color: #020202;
+    border: 1px solid var(--border-dark);
+    border-top: none;
+}
+
+.res-content p {
+    margin: 8px 0;
+    color: #bcbcbc;
+}
+
+.res-content p span {
+    color: var(--text-gray);
+    display: inline-block;
+    width: 110px;
+}
+
+.result-box.success { border: 1px solid var(--success-green); }
+.result-box.success .res-header { background-color: rgba(0, 255, 102, 0.2); color: var(--success-green); }
+
+.result-box.error { border: 1px solid var(--primary-red); }
+.result-box.error .res-header { background-color: rgba(255, 0, 0, 0.2); color: var(--primary-red); }
+
+.badge {
+    color: var(--success-green);
+    font-weight: bold;
+}
+
+.loading-text {
+    color: var(--primary-red);
+    text-align: center;
+    padding: 15px;
+}
+
+.hidden { display: none; }
+
+footer {
+    margin-top: 35px;
+    text-align: center;
+}
+
+.discipline {
+    color: var(--text-gray);
+    font-size: 0.75rem;
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.copyright {
+    color: #333;
+    font-size: 0.7rem;
+    margin-top: 5px;
+}
+
+.status-online {
+    color: var(--success-green);
+    font-weight: bold;
+}
+
+@keyframes scanEffect {
+    from { opacity: 0; transform: scale(0.98); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-4px); }
+    75% { transform: translateX(4px); }
+}
