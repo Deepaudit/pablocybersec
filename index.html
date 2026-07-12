@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validador de Certificados | Pablo Cyber Sec</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="container">
+        <div class="logo-area">
+            <div class="glow-logo">
+                <h1>PABLO CYBER SEC</h1>
+            </div>
+            <p class="subtitle">ETHICAL HACKING TRAINING SYSTEM</p>
+        </div>
+
+        <div class="card validador-box">
+            <h2><i class="fa-solid fa-shield-halved text-red"></i> AUTHENTICITY VERIFICATION</h2>
+            <p class="instruction">Insira o código identificador criptográfico para validar o status do certificado em nossa blockchain/base local.</p>
+            
+            <div class="input-group">
+                <span class="terminal-prefix">$</span>
+                <input type="text" id="cert-code" placeholder="ENTER CERTIFICATE CODE" autocomplete="off" spellcheck="false">
+                <button onclick="validarCertificado()"><i class="fa-solid fa-terminal"></i> RUN</button>
+            </div>
+
+            <div id="resultado" class="result-box hidden"></div>
+        </div>
+
+        <footer>
+            <p class="discipline">DISCIPLINE TODAY, FREEDOM TOMORROW.</p>
+            <p class="copyright">PABLOCYBERSEC &copy; 2026 - SYSTEM STATUS: <span class="status-online">ONLINE</span></p>
+        </footer>
+    </div>
+
+    <script>
+        async function validarCertificado() {
+            const inputField = document.getElementById('cert-code');
+            // Sanitização básica: remove espaços nas pontas e força letras maiúsculas
+            const codigoInput = inputField.value.trim().toUpperCase();
+            const resultadoDiv = document.getElementById('resultado');
+            
+            if (!codigoInput) {
+                inputField.classList.add('input-error');
+                setTimeout(() => inputField.classList.remove('input-error'), 500);
+                return;
+            }
+
+            // Reseta classes e exibe animação de carregamento (estilo hacker de varredura)
+            resultadoDiv.classList.remove('hidden', 'success', 'error');
+            resultadoDiv.innerHTML = `<p class="loading-text"><i class="fa-solid fa-circle-notch fa-spin"></i> QUERYING DATABASE... HOLD ON</p>`;
+            resultadoDiv.classList.remove('hidden');
+
+            try {
+                // Força o cache a não guardar o JSON antigo para sempre atualizar quando você mudar os dados
+                const response = await fetch('certificados.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error();
+                const dados = await response.json();
+
+                // Proteção contra manipulação de propriedades herdadas do JS (segurança do objeto)
+                if (Object.prototype.hasOwnProperty.call(dados, codigoInput)) {
+                    const cert = dados[codigoInput];
+                    
+                    resultadoDiv.classList.add('success');
+                    resultadoDiv.innerHTML = `
+                        <div class="res-header"><i class="fa-solid fa-circle-check"></i> ACCESS GRANTED - CERTIFICATE VALID</div>
+                        <div class="res-content">
+                            <p><span><i class="fa-solid fa-user"></i> ALUNO:</span> ${escapeHTML(cert.aluno)}</p>
+                            <p><span><i class="fa-solid fa-graduation-cap"></i> CURSO:</span> ${escapeHTML(cert.curso)}</p>
+                            <p><span><i class="fa-solid fa-clock"></i> CARGA H.:</span> ${escapeHTML(cert.carga_horaria)}</p>
+                            <p><span><i class="fa-solid fa-calendar-days"></i> EMISSÃO:</span> ${escapeHTML(cert.emissao)}</p>
+                            <p><span><i class="fa-solid fa-server"></i> STATUS:</span> <span class="badge">${escapeHTML(cert.status)}</span></p>
+                        </div>
+                    `;
+                } else {
+                    resultadoDiv.classList.add('error');
+                    resultadoDiv.innerHTML = `
+                        <div class="res-header"><i class="fa-solid fa-triangle-exclamation"></i> ACCESS DENIED - INVALID CODE</div>
+                        <div class="res-content">
+                            <p>O hash ou código <strong>${escapeHTML(codigoInput)}</strong> não foi localizado em nossos registros auditados ou foi revogado por quebra de diretrizes.</p>
+                        </div>
+                    `;
+                }
+            } catch (error) {
+                resultadoDiv.classList.add('error');
+                resultadoDiv.innerHTML = `<div class="res-header"><i class="fa-solid fa-bug"></i> ERROR: FAILED TO FETCH DATA</div>`;
+            }
+        }
+
+        // Função de escape para prevenir qualquer tentativa de XSS refletido via input no resultado
+        function escapeHTML(str) {
+            return str.replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+    </script>
+</body>
+</html>
