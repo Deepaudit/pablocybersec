@@ -1,7 +1,7 @@
 {
   "PCS-7A92-BF14": {
     "aluno": "PROF.Pablo-Cyber",
-    "curso": "Pentest em Aplicações Web & Redes",
+    "curso": "Pentest em Aplicações Web & Redes e infraestruturas corporativas",
     "emissao": "01/01/2025",
     "carga_horaria": "40 horas",
     "status": "Válido"
@@ -10,6 +10,13 @@
     "aluno": "Yuri Silva",
     "curso": "Exploitação Avançada de Infraestrutura",
     "emissao": "05/06/2026",
+    "carga_horaria": "40 horas",
+    "status": "Válido"
+  }
+  "PCS-3C81-D5E7": {
+    "aluno": "PROF.Pablo-Cyber",
+    "curso": "Hadware Hacking & Cloud Segurity & Social Engine",
+    "emissao": "01/01/2025",
     "carga_horaria": "40 horas",
     "status": "Válido"
   }
