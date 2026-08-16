@@ -9,8 +9,8 @@
 <br>
 
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-pablocyber-red?style=for-the-badge&logo=linkedin&logoColor=white&color=B80000)](https://linkedin.com/in/pablocyber)
-[![Email](https://img.shields.io/badge/Email-deepauditoficial-black?style=for-the-badge&logo=gmail&logoColor=white&color=B80000)](mailto:pablocybersec@pablodigital.shop)
-[![Location](https://img.shields.io/badge/Guariba-SP-black?style=for-the-badge&logo=googlemaps&logoColor=white&color=B80000)](#)
+[![Email](https://img.shields.io/badge/Email-deepauditoficial-black?style=for-the-badge&logo=gmail&logoColor=white&color=B80000)](mailto:deepauditoficial@gmail.com)
+[![Location](https://img.shields.io/badge/Ribeir%C3%A3o%20Preto-SP-black?style=for-the-badge&logo=googlemaps&logoColor=white&color=B80000)](#)
 
 </div>
 
@@ -127,6 +127,6 @@ Hardware/IoT ███████░░░░░░░░░░░░░░░�
 
 **PABLO CYBERSEC** — *Segurança ofensiva é o meu código.*
 
-📍 Ribeirao Preto – SP &nbsp;|&nbsp; 📞 +54 9 11 2573-3969 &nbsp;|&nbsp; ✉️ pablocybersec@pablodigital.shop
+📍 Ribeirão Preto – SP &nbsp;|&nbsp; 📞 +54 9 11 2573-3969 &nbsp;|&nbsp; ✉️ pablocybersec@pablodigital.shop
 
 </div>
