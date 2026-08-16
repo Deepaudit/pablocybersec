@@ -1,101 +1,132 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Validador de Certificados | Pablo Cyber Sec</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-</head>
-<body>
+<div align="center">
 
-    <div class="container">
-        <div class="logo-area">
-            <div class="glow-logo">
-                <h1>PABLO CYBER SEC</h1>
-            </div>
-            <p class="subtitle">ETHICAL HACKING TRAINING SYSTEM</p>
-        </div>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:0D0D0D,100:B80000&height=220&section=header&text=PABLO%20CYBERSEC&fontSize=55&fontColor=FFFFFF&fontAlignY=35&desc=Deep%20Audit%20.%20Real%20Results.&descAlignY=55&descSize=18&animation=fadeIn" />
 
-        <div class="card validador-box">
-            <h2><i class="fa-solid fa-shield-halved text-red"></i> AUTHENTICITY VERIFICATION</h2>
-            <p class="instruction">Insira o código identificador criptográfico para validar o status do certificado em nossa blockchain/base local.</p>
-            
-            <div class="input-group">
-                <span class="terminal-prefix">$</span>
-                <input type="text" id="cert-code" placeholder="ENTER CERTIFICATE CODE" autocomplete="off" spellcheck="false">
-                <button onclick="validarCertificado()"><i class="fa-solid fa-terminal"></i> RUN</button>
-            </div>
+<a href="https://linkedin.com/in/pablocyber">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=700&size=26&duration=3000&pause=1000&color=FF0000&center=true&vCenter=true&width=650&lines=Pentester+Web+Pleno+%7C+Ethical+Hacking;Red+Team+%7C+Offensive+Security;5%2B+anos+quebrando+(e+protegendo)+sistemas;Nenhum+sistema+%C3%A9+100%25+seguro." alt="Typing SVG" />
+</a>
 
-            <div id="resultado" class="result-box hidden"></div>
-        </div>
+<br>
 
-        <footer>
-            <p class="discipline">DISCIPLINE TODAY, FREEDOM TOMORROW.</p>
-            <p class="copyright">PABLOCYBERSEC &copy; 2026 - SYSTEM STATUS: <span class="status-online">ONLINE</span></p>
-        </footer>
-    </div>
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-pablocyber-red?style=for-the-badge&logo=linkedin&logoColor=white&color=B80000)](https://linkedin.com/in/pablocyber)
+[![Email](https://img.shields.io/badge/Email-deepauditoficial-black?style=for-the-badge&logo=gmail&logoColor=white&color=B80000)](mailto:pablocybersec@pablodigital.shop)
+[![Location](https://img.shields.io/badge/Guariba-SP-black?style=for-the-badge&logo=googlemaps&logoColor=white&color=B80000)](#)
 
-    <script>
-        async function validarCertificado() {
-            const inputField = document.getElementById('cert-code');
-            // Sanitização básica: remove espaços nas pontas e força letras maiúsculas
-            const codigoInput = inputField.value.trim().toUpperCase();
-            const resultadoDiv = document.getElementById('resultado');
-            
-            if (!codigoInput) {
-                inputField.classList.add('input-error');
-                setTimeout(() => inputField.classList.remove('input-error'), 500);
-                return;
-            }
+</div>
 
-            // Reseta classes e exibe animação de carregamento (estilo hacker de varredura)
-            resultadoDiv.classList.remove('hidden', 'success', 'error');
-            resultadoDiv.innerHTML = `<p class="loading-text"><i class="fa-solid fa-circle-notch fa-spin"></i> QUERYING DATABASE... HOLD ON</p>`;
-            resultadoDiv.classList.remove('hidden');
+---
 
-            try {
-                // Força o cache a não guardar o JSON antigo para sempre atualizar quando você mudar os dados
-                const response = await fetch('certificados.json', { cache: 'no-store' });
-                if (!response.ok) throw new Error();
-                const dados = await response.json();
+### `whoami`
 
-                // Proteção contra manipulação de propriedades herdadas do JS (segurança do objeto)
-                if (Object.prototype.hasOwnProperty.call(dados, codigoInput)) {
-                    const cert = dados[codigoInput];
-                    
-                    resultadoDiv.classList.add('success');
-                    resultadoDiv.innerHTML = `
-                        <div class="res-header"><i class="fa-solid fa-circle-check"></i> ACCESS GRANTED - CERTIFICATE VALID</div>
-                        <div class="res-content">
-                            <p><span><i class="fa-solid fa-user"></i> ALUNO:</span> ${escapeHTML(cert.aluno)}</p>
-                            <p><span><i class="fa-solid fa-graduation-cap"></i> CURSO:</span> ${escapeHTML(cert.curso)}</p>
-                            <p><span><i class="fa-solid fa-clock"></i> CARGA H.:</span> ${escapeHTML(cert.carga_horaria)}</p>
-                            <p><span><i class="fa-solid fa-calendar-days"></i> EMISSÃO:</span> ${escapeHTML(cert.emissao)}</p>
-                            <p><span><i class="fa-solid fa-server"></i> STATUS:</span> <span class="badge">${escapeHTML(cert.status)}</span></p>
-                        </div>
-                    `;
-                } else {
-                    resultadoDiv.classList.add('error');
-                    resultadoDiv.innerHTML = `
-                        <div class="res-header"><i class="fa-solid fa-triangle-exclamation"></i> ACCESS DENIED - INVALID CODE</div>
-                        <div class="res-content">
-                            <p>O hash ou código <strong>${escapeHTML(codigoInput)}</strong> não foi localizado em nossos registros auditados ou foi revogado por quebra de diretrizes.</p>
-                        </div>
-                    `;
-                }
-            } catch (error) {
-                resultadoDiv.classList.add('error');
-                resultadoDiv.innerHTML = `<div class="res-header"><i class="fa-solid fa-bug"></i> ERROR: FAILED TO FETCH DATA</div>`;
-            }
-        }
+```bash
+$ whoami
+> Pentester Web Pleno especializado em aplicações web, APIs, Active Directory e Cloud AWS.
+> +5 anos de experiência em testes de invasão, automação em Python e relatórios técnicos acionáveis.
+> Ética, precisão e foco em resultados — do reconhecimento ao acesso total.
+```
 
-        // Função de escape para prevenir qualquer tentativa de XSS refletido via input no resultado
-        function escapeHTML(str) {
-            return str.replace(/[&<>'"]/g, 
-                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
-            );
-        }
-    </script>
-</body>
-</html>
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=500&size=16&duration=2500&pause=800&color=8B0000&center=true&vCenter=true&width=600&lines=root%40pablocyber%3A~%23+nmap+-sV+-A+target;root%40pablocyber%3A~%23+access+granted+%E2%9C%93" />
+</div>
+
+---
+
+## 🎯 Foco de Atuação
+
+```
+Pentest Web  ██████████████████████░░  30%   Web + API Security
+Infra & AD   ██████████████░░░░░░░░░░  20%   Active Directory / Infra
+Dev & Auto   ███████████░░░░░░░░░░░░░  15%   Programming + Exploit Dev
+Research     ███████████░░░░░░░░░░░░░  15%   CVEs, Labs & CTFs
+AI Security  ███████░░░░░░░░░░░░░░░░░  10%   LLM / Prompt Injection
+Hardware/IoT ███████░░░░░░░░░░░░░░░░░  10%   Firmware & IoT Security
+```
+
+---
+
+## 🛠️ Arsenal Técnico
+
+<div align="center">
+
+**Pentest & Ferramentas**
+
+![BurpSuite](https://img.shields.io/badge/-Burp%20Suite-FF6633?style=flat-square&logo=burpsuite&logoColor=white)
+![Metasploit](https://img.shields.io/badge/-Metasploit-2596CD?style=flat-square&logo=metasploit&logoColor=white)
+![Nmap](https://img.shields.io/badge/-Nmap-4682B4?style=flat-square&logo=nmap&logoColor=white)
+![Wireshark](https://img.shields.io/badge/-Wireshark-1679A7?style=flat-square&logo=wireshark&logoColor=white)
+![SQLMap](https://img.shields.io/badge/-SQLMap-B80000?style=flat-square&logo=sqlite&logoColor=white)
+![OWASP](https://img.shields.io/badge/-OWASP%20Top%2010-000000?style=flat-square&logo=owasp&logoColor=white)
+
+**Linguagens & Dev**
+
+![Python](https://img.shields.io/badge/-Python-3776AB?style=flat-square&logo=python&logoColor=white)
+![Go](https://img.shields.io/badge/-Go-00ADD8?style=flat-square&logo=go&logoColor=white)
+![PHP](https://img.shields.io/badge/-PHP-777BB4?style=flat-square&logo=php&logoColor=white)
+![JavaScript](https://img.shields.io/badge/-JavaScript-F7DF1E?style=flat-square&logo=javascript&logoColor=black)
+![C++](https://img.shields.io/badge/-C%2B%2B-00599C?style=flat-square&logo=cplusplus&logoColor=white)
+![C](https://img.shields.io/badge/-C-A8B9CC?style=flat-square&logo=c&logoColor=black)
+
+**Infra & Cloud**
+
+![Linux](https://img.shields.io/badge/-Linux-FCC624?style=flat-square&logo=linux&logoColor=black)
+![Kali Linux](https://img.shields.io/badge/-Kali%20Linux-557C94?style=flat-square&logo=kalilinux&logoColor=white)
+![ParrotOS](https://img.shields.io/badge/-Parrot%20OS-15F09D?style=flat-square&logo=parrotsecurity&logoColor=black)
+![Windows AD](https://img.shields.io/badge/-Active%20Directory-0078D4?style=flat-square&logo=windows&logoColor=white)
+![AWS](https://img.shields.io/badge/-AWS%20Security-232F3E?style=flat-square&logo=amazonaws&logoColor=white)
+![Azure](https://img.shields.io/badge/-Azure-0078D4?style=flat-square&logo=microsoftazure&logoColor=white)
+
+</div>
+
+---
+
+## 🧩 Competências
+
+| Área | Skills |
+|---|---|
+| 🌐 **Pentest Web** | SQL Injection · IDOR · XSS · CSRF · Bypass de Autenticação · OWASP ZAP |
+| 🛡️ **Segurança Ofensiva** | Nessus · OpenVAS · Gobuster · Dirb · Exploração de falhas críticas |
+| 🏢 **Active Directory** | BloodHound · Kerberos · DCSync · ADCS (PKI) · Movimento lateral |
+| 💻 **Automação** | Scripts de coleta e análise · SDLC · DevSecOps |
+| 🔍 **Forense & Research** | AFD (Forense Digital) · CVEs · Write-ups · CTFs |
+
+---
+
+## 🏆 Últimas Operações
+
+<div align="left">
+
+> ### ✅ OPERATION COMPLETED: SOLYD ONE BOX
+> Alvo varrido, analisado e **totalmente comprometido**.
+>
+> | 🏆 Ranking | 🎯 Score | 🚩 Missão |
+> |---|---|---|
+> | **25º lugar geral** | **550 pontos** | **4/4 flags capturadas** |
+>
+> Da varredura inicial de portas e quebra offline de hash SSH, passando pela enumeração de serviços internos via Gitea e engenharia reversa de branches ocultas, até a descriptografia de credenciais via **AES-256-CBC + PBKDF2** — cada vetor explorado metodicamente. **Do zero ao acesso total.**
+
+</div>
+
+---
+
+## 📚 Formação & Certificações
+
+- 🎓 Tecnólogo em Ciberseguranca *(em andamento)*
+- 🛡️ Solyd One Security
+- 🐍 Hackers Hive / Metasploit
+- 🔐 Google Cybersecurity
+- 🗄️ SQL Estruturado
+- 🔎 AFD — Análise Forense Digital
+
+---
+
+<div align="center">
+
+### `NENHUM SISTEMA É 100% SEGURO` ☠️🔥
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:B80000,100:0D0D0D&height=120&section=footer" />
+
+**PABLO CYBERSEC** — *Segurança ofensiva é o meu código.*
+
+📍 Ribeirao Preto – SP &nbsp;|&nbsp; 📞 +54 9 11 2573-3969 &nbsp;|&nbsp; ✉️ pablocybersec@pablodigital.shop
+
+</div>
