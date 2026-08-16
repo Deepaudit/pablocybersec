@@ -1,1 +1,728 @@
-hello
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pablo Cybersec — Pentester Web | Red Team | Offensive Security</title>
+<meta name="description" content="Pablo Cybersec — Pentester Web Pleno, Ethical Hacking e Red Team. Deep Audit. Real Results.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #08080a;
+    --bg-alt: #0f0f12;
+    --surface: #151519;
+    --surface-2: #1b1b20;
+    --border: #29292f;
+    --red: #c8171c;
+    --red-bright: #ff3232;
+    --red-dim: #5c0d10;
+    --text: #e9e7e3;
+    --text-muted: #8d8d95;
+    --text-dim: #55555c;
+    --font-display: 'Rajdhani', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+    --font-body: 'Inter', sans-serif;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; }
+
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--font-body);
+    line-height:1.6;
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  /* scanline overlay */
+  body::before{
+    content:"";
+    position:fixed; inset:0;
+    pointer-events:none;
+    z-index:999;
+    background:repeating-linear-gradient(
+      to bottom,
+      rgba(255,255,255,0.015) 0px,
+      rgba(255,255,255,0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+    mix-blend-mode:overlay;
+  }
+
+  ::selection{ background:var(--red); color:#fff; }
+
+  a{ color:inherit; text-decoration:none; }
+
+  .wrap{ max-width:1080px; margin:0 auto; padding:0 28px; }
+
+  .eyebrow{
+    font-family:var(--font-mono);
+    font-size:12.5px;
+    letter-spacing:0.14em;
+    color:var(--red-bright);
+    text-transform:uppercase;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    margin-bottom:14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width:22px; height:1px;
+    background:var(--red-bright);
+    display:inline-block;
+  }
+
+  h2.section-title{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(28px, 4vw, 40px);
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    color:var(--text);
+    margin-bottom:36px;
+  }
+  h2.section-title span{ color:var(--red-bright); }
+
+  section{ padding:88px 0; position:relative; }
+  section + section{ border-top:1px solid var(--border); }
+
+  /* ============ HERO ============ */
+  .hero{
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    position:relative;
+    padding:120px 0 80px;
+    background:
+      radial-gradient(ellipse 900px 500px at 50% 0%, rgba(200,23,28,0.16), transparent 65%),
+      var(--bg);
+    overflow:hidden;
+  }
+
+  .hero-grid{
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(to right, rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size:46px 46px;
+    -webkit-mask-image:radial-gradient(ellipse 800px 550px at 50% 20%, black 10%, transparent 75%);
+    mask-image:radial-gradient(ellipse 800px 550px at 50% 20%, black 10%, transparent 75%);
+    animation:grid-drift 18s linear infinite;
+  }
+  @keyframes grid-drift{
+    0%{ background-position:0 0; }
+    100%{ background-position:46px 46px; }
+  }
+
+  .hero-inner{ position:relative; z-index:2; text-align:center; }
+
+  .badge-pill{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:var(--font-mono);
+    font-size:11.5px; letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:var(--text-muted);
+    border:1px solid var(--border);
+    background:rgba(255,255,255,0.02);
+    padding:7px 16px;
+    border-radius:999px;
+    margin-bottom:30px;
+  }
+  .badge-pill .dot{
+    width:6px; height:6px; border-radius:50%;
+    background:var(--red-bright);
+    box-shadow:0 0 8px var(--red-bright);
+    animation:pulse-dot 1.8s ease-in-out infinite;
+  }
+  @keyframes pulse-dot{
+    0%,100%{ opacity:1; }
+    50%{ opacity:0.35; }
+  }
+
+  .hero h1{
+    font-family:var(--font-display);
+    font-weight:700;
+    font-size:clamp(48px, 10vw, 108px);
+    line-height:0.95;
+    letter-spacing:0.01em;
+    text-transform:uppercase;
+    position:relative;
+    display:inline-block;
+    color:#fff;
+  }
+  .hero h1 .glitch-wrap{ position:relative; display:inline-block; }
+  .hero h1 .glitch-wrap::before,
+  .hero h1 .glitch-wrap::after{
+    content:attr(data-text);
+    position:absolute; left:0; top:0;
+    width:100%; height:100%;
+    clip-path:inset(0 0 0 0);
+    opacity:0.8;
+  }
+  .hero h1 .glitch-wrap::before{
+    color:var(--red-bright);
+    animation:glitch-1 5.5s infinite steps(1);
+    z-index:-1;
+  }
+  .hero h1 .glitch-wrap::after{
+    color:#2ee6d6;
+    animation:glitch-2 5.5s infinite steps(1);
+    z-index:-1;
+  }
+  @keyframes glitch-1{
+    0%,92%,100%{ clip-path:inset(0 0 0 0); transform:translate(0,0); opacity:0; }
+    93%{ clip-path:inset(10% 0 60% 0); transform:translate(-3px,1px); opacity:0.75; }
+    95%{ clip-path:inset(60% 0 5% 0); transform:translate(3px,-1px); opacity:0.75; }
+    97%{ clip-path:inset(30% 0 40% 0); transform:translate(-2px,0); opacity:0.6; }
+  }
+  @keyframes glitch-2{
+    0%,92%,100%{ clip-path:inset(0 0 0 0); transform:translate(0,0); opacity:0; }
+    93%{ clip-path:inset(70% 0 5% 0); transform:translate(3px,0); opacity:0.6; }
+    95%{ clip-path:inset(15% 0 55% 0); transform:translate(-3px,1px); opacity:0.6; }
+    97%{ clip-path:inset(45% 0 20% 0); transform:translate(2px,0); opacity:0.5; }
+  }
+
+  .hero .sub{
+    font-family:var(--font-mono);
+    font-size:clamp(14px, 2vw, 17px);
+    color:var(--red-bright);
+    margin-top:22px;
+    height:26px;
+  }
+  .hero .sub .cursor{
+    display:inline-block;
+    width:9px; height:16px;
+    background:var(--red-bright);
+    margin-left:2px;
+    vertical-align:middle;
+    animation:blink 1s step-start infinite;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .hero .tagline{
+    max-width:520px;
+    margin:26px auto 0;
+    color:var(--text-muted);
+    font-size:15.5px;
+  }
+
+  .hero-links{
+    display:flex; flex-wrap:wrap; gap:12px;
+    justify-content:center;
+    margin-top:38px;
+  }
+  .link-btn{
+    font-family:var(--font-mono);
+    font-size:13px;
+    letter-spacing:0.03em;
+    padding:12px 22px;
+    border:1px solid var(--border);
+    border-radius:4px;
+    color:var(--text);
+    background:rgba(255,255,255,0.02);
+    display:inline-flex; align-items:center; gap:9px;
+    transition:border-color .2s ease, background .2s ease, transform .2s ease;
+  }
+  .link-btn:hover{
+    border-color:var(--red-bright);
+    background:rgba(200,23,28,0.08);
+    transform:translateY(-2px);
+  }
+  .link-btn.primary{
+    background:var(--red);
+    border-color:var(--red);
+    color:#fff;
+  }
+  .link-btn.primary:hover{ background:var(--red-bright); border-color:var(--red-bright); }
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    font-family:var(--font-mono); font-size:10.5px; color:var(--text-dim);
+    letter-spacing:0.16em; text-transform:uppercase;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .scroll-cue .line{ width:1px; height:34px; background:linear-gradient(var(--red-bright), transparent); animation:scroll-cue 1.8s ease-in-out infinite; }
+  @keyframes scroll-cue{ 0%{ transform:scaleY(0); transform-origin:top; } 50%{ transform:scaleY(1); transform-origin:top; } 51%{ transform-origin:bottom; } 100%{ transform:scaleY(0); transform-origin:bottom; } }
+
+  /* ============ WHOAMI TERMINAL ============ */
+  .terminal{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:8px;
+    overflow:hidden;
+    box-shadow:0 30px 60px -30px rgba(0,0,0,0.6);
+  }
+  .terminal-bar{
+    display:flex; align-items:center; gap:8px;
+    padding:12px 16px;
+    background:var(--surface-2);
+    border-bottom:1px solid var(--border);
+  }
+  .terminal-bar span{ width:11px; height:11px; border-radius:50%; background:#333; }
+  .terminal-bar span:nth-child(1){ background:#4a1414; }
+  .terminal-bar span:nth-child(2){ background:#4a3a14; }
+  .terminal-bar span:nth-child(3){ background:#1c4a1c; }
+  .terminal-bar .path{
+    font-family:var(--font-mono); font-size:12px; color:var(--text-dim);
+    margin-left:10px;
+  }
+  .terminal-body{
+    padding:26px 26px 32px;
+    font-family:var(--font-mono);
+    font-size:14.5px;
+    color:var(--text-muted);
+    min-height:150px;
+  }
+  .terminal-body .prompt{ color:var(--red-bright); }
+  .terminal-body .line{ opacity:0; white-space:pre-wrap; }
+  .terminal-body .out{ color:var(--text); }
+  .terminal-body .type-cursor{
+    display:inline-block; width:8px; height:15px; background:var(--red-bright);
+    vertical-align:middle; margin-left:2px; animation:blink 1s step-start infinite;
+  }
+
+  /* ============ FOCO BARS ============ */
+  .bars{ display:flex; flex-direction:column; gap:22px; }
+  .bar-row{ display:grid; grid-template-columns:150px 1fr 60px; align-items:center; gap:18px; }
+  .bar-row .label{ font-family:var(--font-display); font-weight:600; font-size:15px; text-transform:uppercase; letter-spacing:0.03em; }
+  .bar-row .desc{ font-family:var(--font-mono); font-size:11.5px; color:var(--text-dim); display:block; margin-top:2px; text-transform:none; letter-spacing:0; }
+  .bar-track{ height:8px; background:var(--surface-2); border-radius:99px; overflow:hidden; border:1px solid var(--border); }
+  .bar-fill{ height:100%; width:0%; border-radius:99px; background:linear-gradient(90deg, var(--red-dim), var(--red-bright)); transition:width 1.4s cubic-bezier(.16,1,.3,1); box-shadow:0 0 12px rgba(255,50,50,0.35); }
+  .bar-row .pct{ font-family:var(--font-mono); font-size:14px; color:var(--red-bright); text-align:right; }
+
+  /* ============ ARSENAL CHIPS ============ */
+  .arsenal-group{ margin-bottom:34px; }
+  .arsenal-group h3{
+    font-family:var(--font-mono); font-size:12px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--text-dim); margin-bottom:14px;
+  }
+  .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+  .chip{
+    font-family:var(--font-mono); font-size:12.5px;
+    padding:8px 14px; border:1px solid var(--border);
+    border-radius:5px; color:var(--text-muted);
+    background:var(--surface);
+    transition:all .2s ease;
+  }
+  .chip:hover{ border-color:var(--red-bright); color:var(--text); background:rgba(200,23,28,0.08); }
+
+  /* ============ COMPETENCIAS TABLE ============ */
+  .comp-grid{ display:grid; grid-template-columns:1fr; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .comp-row{ display:grid; grid-template-columns:230px 1fr; background:var(--surface); }
+  .comp-row .area{
+    padding:20px 22px; font-family:var(--font-display); font-weight:600;
+    font-size:16px; text-transform:uppercase; letter-spacing:0.02em;
+    display:flex; align-items:center; gap:10px; background:var(--surface-2);
+  }
+  .comp-row .skills{ padding:20px 22px; color:var(--text-muted); font-size:14px; display:flex; align-items:center; }
+  @media (max-width:640px){
+    .comp-row{ grid-template-columns:1fr; }
+    .comp-row .area{ padding-bottom:8px; }
+  }
+
+  /* ============ OPERATION / STAMP ============ */
+  .op-card{
+    display:grid; grid-template-columns:1fr 220px;
+    gap:40px; align-items:center;
+    background:linear-gradient(145deg, var(--surface), var(--bg-alt));
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:40px;
+    position:relative;
+    overflow:hidden;
+  }
+  .op-card::before{
+    content:"";
+    position:absolute; top:-40%; right:-10%;
+    width:400px; height:400px;
+    background:radial-gradient(circle, rgba(200,23,28,0.18), transparent 70%);
+    pointer-events:none;
+  }
+  .op-title{ font-family:var(--font-display); font-weight:700; font-size:26px; text-transform:uppercase; margin-bottom:10px; }
+  .op-title .ok{ color:#2ecb71; }
+  .op-desc{ color:var(--text-muted); font-size:14.5px; max-width:520px; margin-bottom:26px; }
+  .op-stats{ display:flex; gap:34px; flex-wrap:wrap; }
+  .op-stat .num{ font-family:var(--font-mono); font-size:26px; color:var(--red-bright); font-weight:700; }
+  .op-stat .lbl{ font-family:var(--font-mono); font-size:10.5px; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.1em; margin-top:4px; }
+
+  .stamp{
+    width:190px; height:190px; position:relative;
+    display:flex; align-items:center; justify-content:center;
+    justify-self:center;
+  }
+  .stamp svg{ position:absolute; inset:0; width:100%; height:100%; animation:rotate-stamp 24s linear infinite; }
+  .stamp .core{
+    width:118px; height:118px; border-radius:50%;
+    border:2.5px solid var(--red-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-weight:700; font-size:15px;
+    color:var(--red-bright); text-transform:uppercase;
+    text-align:center; line-height:1.2;
+    transform:rotate(-8deg);
+    box-shadow:0 0 24px rgba(255,50,50,0.25) inset;
+  }
+  @keyframes rotate-stamp{ from{ transform:rotate(0); } to{ transform:rotate(360deg); } }
+  @media (max-width:720px){
+    .op-card{ grid-template-columns:1fr; text-align:center; }
+    .op-stats{ justify-content:center; }
+  }
+
+  /* ============ FORMACAO ============ */
+  .cert-list{ display:flex; flex-direction:column; gap:1px; background:var(--border); border:1px solid var(--border); border-radius:8px; overflow:hidden; }
+  .cert-item{
+    display:flex; align-items:center; gap:16px;
+    padding:18px 22px; background:var(--surface);
+    font-size:15px;
+  }
+  .cert-item .mk{
+    width:22px; height:22px; border-radius:50%;
+    border:1.5px solid var(--red-bright);
+    color:var(--red-bright);
+    display:flex; align-items:center; justify-content:center;
+    font-size:12px; flex-shrink:0;
+  }
+  .cert-item .tag{
+    margin-left:auto; font-family:var(--font-mono); font-size:10.5px;
+    color:var(--text-dim); text-transform:uppercase; letter-spacing:0.08em;
+  }
+
+  /* ============ FOOTER ============ */
+  footer{
+    padding:80px 0 46px;
+    text-align:center;
+    position:relative;
+    background:
+      radial-gradient(ellipse 700px 300px at 50% 100%, rgba(200,23,28,0.12), transparent 70%),
+      var(--bg-alt);
+  }
+  footer .motto{
+    font-family:var(--font-display); font-weight:700;
+    font-size:clamp(20px, 3vw, 30px);
+    text-transform:uppercase; letter-spacing:0.03em;
+    color:#fff; margin-bottom:8px;
+  }
+  footer .motto .skull{ display:inline-block; animation:pulse-dot 2s ease-in-out infinite; }
+  footer .sig{ font-family:var(--font-mono); color:var(--red-bright); font-size:14px; margin-top:18px; }
+  footer .contact{ margin-top:22px; color:var(--text-muted); font-size:13.5px; font-family:var(--font-mono); }
+  footer .contact a:hover{ color:var(--red-bright); }
+  footer .copyline{ margin-top:40px; font-size:11.5px; color:var(--text-dim); font-family:var(--font-mono); }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  a:focus-visible, .link-btn:focus-visible{ outline:2px solid var(--red-bright); outline-offset:3px; }
+</style>
+</head>
+<body>
+
+<!-- ============ HERO ============ -->
+<header class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-inner wrap">
+    <div class="badge-pill"><span class="dot"></span> DEEP AUDIT · REAL RESULTS</div>
+    <h1><span class="glitch-wrap" data-text="PABLO CYBERSEC">PABLO CYBERSEC</span></h1>
+    <div class="sub" id="typedSub">&nbsp;</div>
+    <p class="tagline">Pentester Web Pleno com +5 anos de experiência em testes de invasão, Active Directory, Cloud AWS e automação ofensiva.</p>
+    <div class="hero-links">
+      <a class="link-btn primary" href="https://linkedin.com/in/pablocyber" target="_blank" rel="noopener">→ LinkedIn</a>
+      <a class="link-btn" href="mailto:pablocybersec@pablodigital.shop">✉ pablocybersec@pablodigital.shop</a>
+      <a class="link-btn" href="tel:+5491125733969">☎ +54 9 11 2573-3969</a>
+      <a class="link-btn" href="#contato">📍 Ribeirão Preto – SP</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>scroll</span><span class="line"></span></div>
+</header>
+
+<!-- ============ WHOAMI ============ -->
+<section id="whoami">
+  <div class="wrap">
+    <div class="eyebrow">01 · Sobre</div>
+    <h2 class="section-title">$ <span>whoami</span></h2>
+    <div class="terminal">
+      <div class="terminal-bar">
+        <span></span><span></span><span></span>
+        <span class="path">root@pablocyber:~</span>
+      </div>
+      <div class="terminal-body" id="terminalBody"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOCO ============ -->
+<section id="foco">
+  <div class="wrap">
+    <div class="eyebrow">02 · Rotina</div>
+    <h2 class="section-title">Foco de <span>Atuação</span></h2>
+    <div class="bars" id="barsWrap">
+      <div class="bar-row" data-pct="30">
+        <div class="label">Pentest Web<span class="desc">Web + API Security</span></div>
+        <div class="bar-track"><div class="bar-fill"></div></div>
+        <div class="pct">30%</div>
+      </div>
+      <div class="bar-row" data-pct="20">
+        <div class="label">Infra &amp; AD<span class="desc">Active Directory / Infra</span></div>
+        <div class="bar-track"><div class="bar-fill"></div></div>
+        <div class="pct">20%</div>
+      </div>
+      <div class="bar-row" data-pct="15">
+        <div class="label">Dev &amp; Automação<span class="desc">Programming + Exploit Dev</span></div>
+        <div class="bar-track"><div class="bar-fill"></div></div>
+        <div class="pct">15%</div>
+      </div>
+      <div class="bar-row" data-pct="15">
+        <div class="label">Research<span class="desc">CVEs, Labs &amp; CTFs</span></div>
+        <div class="bar-track"><div class="bar-fill"></div></div>
+        <div class="pct">15%</div>
+      </div>
+      <div class="bar-row" data-pct="10">
+        <div class="label">AI Security<span class="desc">LLM / Prompt Injection</span></div>
+        <div class="bar-track"><div class="bar-fill"></div></div>
+        <div class="pct">10%</div>
+      </div>
+      <div class="bar-row" data-pct="10">
+        <div class="label">Hardware/IoT<span class="desc">Firmware &amp; IoT Security</span></div>
+        <div class="bar-track"><div class="bar-fill"></div></div>
+        <div class="pct">10%</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ARSENAL ============ -->
+<section id="arsenal">
+  <div class="wrap">
+    <div class="eyebrow">03 · Stack</div>
+    <h2 class="section-title">Arsenal <span>Técnico</span></h2>
+
+    <div class="arsenal-group">
+      <h3>Pentest &amp; Ferramentas</h3>
+      <div class="chips">
+        <span class="chip">Burp Suite</span><span class="chip">Metasploit</span><span class="chip">Nmap</span>
+        <span class="chip">Wireshark</span><span class="chip">SQLMap</span><span class="chip">Gobuster</span>
+        <span class="chip">Dirb</span><span class="chip">Nessus</span><span class="chip">OpenVAS</span>
+        <span class="chip">OWASP Top 10</span><span class="chip">OWASP ZAP</span>
+      </div>
+    </div>
+
+    <div class="arsenal-group">
+      <h3>Linguagens &amp; Dev</h3>
+      <div class="chips">
+        <span class="chip">Python</span><span class="chip">Go</span><span class="chip">PHP</span>
+        <span class="chip">JavaScript</span><span class="chip">C++</span><span class="chip">C</span>
+      </div>
+    </div>
+
+    <div class="arsenal-group">
+      <h3>Infra &amp; Cloud</h3>
+      <div class="chips">
+        <span class="chip">Linux</span><span class="chip">Kali Linux</span><span class="chip">Parrot OS</span>
+        <span class="chip">Active Directory</span><span class="chip">BloodHound</span><span class="chip">Kerberos</span>
+        <span class="chip">DCSync</span><span class="chip">ADCS (PKI)</span><span class="chip">AWS Security</span>
+        <span class="chip">Azure</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMPETENCIAS ============ -->
+<section id="competencias">
+  <div class="wrap">
+    <div class="eyebrow">04 · Skillset</div>
+    <h2 class="section-title">Competências</h2>
+    <div class="comp-grid">
+      <div class="comp-row">
+        <div class="area">🌐 Pentest Web</div>
+        <div class="skills">SQL Injection · IDOR · XSS · CSRF · Bypass de Autenticação · OWASP ZAP</div>
+      </div>
+      <div class="comp-row">
+        <div class="area">🛡️ Segurança Ofensiva</div>
+        <div class="skills">Nessus · OpenVAS · Gobuster · Dirb · Exploração de falhas críticas</div>
+      </div>
+      <div class="comp-row">
+        <div class="area">🏢 Active Directory</div>
+        <div class="skills">BloodHound · Kerberos · DCSync · ADCS (PKI) · Movimento lateral</div>
+      </div>
+      <div class="comp-row">
+        <div class="area">💻 Automação</div>
+        <div class="skills">Scripts de coleta e análise · SDLC · DevSecOps</div>
+      </div>
+      <div class="comp-row">
+        <div class="area">🔍 Forense &amp; Research</div>
+        <div class="skills">AFD (Forense Digital) · CVEs · Write-ups · CTFs</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ OPERACAO ============ -->
+<section id="operacao">
+  <div class="wrap">
+    <div class="eyebrow">05 · Track Record</div>
+    <h2 class="section-title">Última <span>Operação</span></h2>
+    <div class="op-card">
+      <div>
+        <div class="op-title"><span class="ok">✔</span> Operation Completed: Solyd One Box</div>
+        <p class="op-desc">Da varredura inicial de portas e quebra offline de hash SSH, passando pela enumeração de serviços internos via Gitea e engenharia reversa de branches ocultas, até a descriptografia de credenciais via <strong>AES-256-CBC + PBKDF2</strong> — cada vetor explorado metodicamente. Do zero ao acesso total.</p>
+        <div class="op-stats">
+          <div class="op-stat"><div class="num">25º</div><div class="lbl">Ranking Geral</div></div>
+          <div class="op-stat"><div class="num">550</div><div class="lbl">Pontos</div></div>
+          <div class="op-stat"><div class="num">4/4</div><div class="lbl">Flags Capturadas</div></div>
+        </div>
+      </div>
+      <div class="stamp">
+        <svg viewBox="0 0 200 200">
+          <defs>
+            <path id="circlePath" d="M 100,100 m -85,0 a 85,85 0 1,1 170,0 a 85,85 0 1,1 -170,0" />
+          </defs>
+          <text font-family="JetBrains Mono" font-size="11.5" fill="#c8171c" letter-spacing="3">
+            <textPath href="#circlePath" startOffset="0%">MISSION COMPLETE • DEEP AUDIT • MISSION COMPLETE • DEEP AUDIT •</textPath>
+          </text>
+        </svg>
+        <div class="core">100%<br>Aproveitamento</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FORMACAO ============ -->
+<section id="formacao">
+  <div class="wrap">
+    <div class="eyebrow">06 · Credenciais</div>
+    <h2 class="section-title">Formação &amp; <span>Certificações</span></h2>
+    <div class="cert-list">
+      <div class="cert-item"><span class="mk">✓</span> Tecnólogo em Cibersegurança <span class="tag">Em andamento</span></div>
+      <div class="cert-item"><span class="mk">✓</span> Solyd One Security</div>
+      <div class="cert-item"><span class="mk">✓</span> Hackers Hive / Metasploit</div>
+      <div class="cert-item"><span class="mk">✓</span> Google Cybersecurity</div>
+      <div class="cert-item"><span class="mk">✓</span> SQL Estruturado</div>
+      <div class="cert-item"><span class="mk">✓</span> AFD — Análise Forense Digital</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contato">
+  <div class="wrap">
+    <div class="motto">Nenhum sistema é <span style="color:var(--red-bright)">100%</span> seguro <span class="skull">☠️</span></div>
+    <div class="sig">PABLO CYBERSEC — Segurança ofensiva é o meu código.</div>
+    <div class="contact">
+      📍 Ribeirão Preto – SP &nbsp;|&nbsp;
+      📞 <a href="tel:+5491125733969">+54 9 11 2573-3969</a> &nbsp;|&nbsp;
+      ✉ <a href="mailto:pablocybersec@pablodigital.shop">pablocybersec@pablodigital.shop</a> &nbsp;|&nbsp;
+      <a href="https://linkedin.com/in/pablocyber" target="_blank" rel="noopener">linkedin.com/in/pablocyber</a>
+    </div>
+    <div class="copyline">© 2026 Pablo Cybersec. Deep Audit. Real Results.</div>
+  </div>
+</footer>
+
+<script>
+  // Typing loop for hero subtitle
+  (function(){
+    const lines = [
+      "Pentester Web Pleno | Ethical Hacking",
+      "Red Team | Offensive Security",
+      "5+ anos quebrando (e protegendo) sistemas",
+      "Nenhum sistema é 100% seguro."
+    ];
+    const el = document.getElementById('typedSub');
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reduce){ el.textContent = lines[0]; }
+    else{
+      let li = 0, ci = 0, deleting = false;
+      function tick(){
+        const current = lines[li];
+        if(!deleting){
+          ci++;
+          el.innerHTML = current.slice(0, ci) + '<span class="cursor"></span>';
+          if(ci === current.length){ deleting = true; setTimeout(tick, 1400); return; }
+        } else {
+          ci--;
+          el.innerHTML = current.slice(0, ci) + '<span class="cursor"></span>';
+          if(ci === 0){ deleting = false; li = (li+1) % lines.length; }
+        }
+        setTimeout(tick, deleting ? 22 : 42);
+      }
+      tick();
+    }
+  })();
+
+  // Terminal whoami typing, triggered once when visible
+  (function(){
+    const body = document.getElementById('terminalBody');
+    const script = [
+      { p:'$ ', c:'whoami', out:false },
+      { c:'> Pentester Web Pleno especializado em aplicações web, APIs, Active Directory e Cloud AWS.', out:true },
+      { c:'> +5 anos de experiência em testes de invasão, automação em Python e relatórios técnicos acionáveis.', out:true },
+      { c:'> Ética, precisão e foco em resultados — do reconhecimento ao acesso total.', out:true }
+    ];
+    let started = false;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function render(){
+      if(reduce){
+        body.innerHTML = script.map(s => (s.p ? '<span class="prompt">'+s.p+'</span>' : '') + '<div class="out">'+s.c+'</div>').join('');
+        return;
+      }
+      let html = '';
+      script.forEach((s,i) => { html += '<div class="line" id="tline'+i+'">' + (s.p ? '<span class="prompt">'+s.p+'</span>' : '') + '<span class="txt" id="ttxt'+i+'"></span></div>'; });
+      body.innerHTML = html;
+
+      let idx = 0;
+      function typeLine(i){
+        if(i >= script.length) return;
+        const lineEl = document.getElementById('tline'+i);
+        const txtEl = document.getElementById('ttxt'+i);
+        lineEl.style.opacity = 1;
+        const full = script[i].c;
+        let c = 0;
+        if(script[i].out) txtEl.classList.add('out');
+        const speed = script[i].out ? 10 : 55;
+        const iv = setInterval(() => {
+          c++;
+          txtEl.textContent = full.slice(0, c);
+          if(c >= full.length){
+            clearInterval(iv);
+            setTimeout(() => typeLine(i+1), 220);
+          }
+        }, speed);
+      }
+      typeLine(0);
+    }
+
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting && !started){
+          started = true;
+          render();
+        }
+      });
+    }, { threshold: 0.4 });
+    obs.observe(document.getElementById('whoami'));
+  })();
+
+  // Bars fill on scroll
+  (function(){
+    const rows = document.querySelectorAll('.bar-row');
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if(e.isIntersecting){
+          const fill = e.target.querySelector('.bar-fill');
+          fill.style.width = e.target.dataset.pct + '%';
+          obs.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.4 });
+    rows.forEach(r => obs.observe(r));
+  })();
+</script>
+
+</body>
+</html>
