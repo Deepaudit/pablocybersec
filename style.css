@@ -529,20 +529,3 @@ footer {
   color: var(--ink-faint);
 }
 footer span { color: var(--red); }
-
-/* loading / error states for the JSON fetch */
-#app.state-loading .wait-hide,
-#app.state-error .wait-hide { display: none; }
-.load-screen, .error-screen {
-  min-height: 60vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 14px;
-  color: var(--ink-faint);
-  font-size: 13px;
-  text-align: center;
-  padding: 40px var(--edge);
-}
-.error-screen strong { color: var(--ink); }
