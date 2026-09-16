@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pablo Cyber — Pentester Web | Ethical Hacking | Red Team</title>
+<meta name="description" content="Portfólio profissional de Pablo Cyber — Pentester Web Pleno, Ethical Hacking e Red Team. Segurança ofensiva, segurança de aplicações e APIs, Active Directory e Cloud Security.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230a0a0a%22/><rect x=%2230%22 y=%2245%22 width=%2240%22 height=%2230%22 fill=%22%23e0332a%22/><rect x=%2238%22 y=%2225%22 width=%2224%22 height=%2225%22 fill=%22none%22 stroke=%22%23e0332a%22 stroke-width=%226%22/></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@700;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="grid-bg" aria-hidden="true"></div>
+
+<div id="app" class="state-loading">
+
+  <div class="load-screen wait-only" data-state="loading">
+    <span>[ carregando dados do perfil… ]</span>
+  </div>
+
+  <div class="error-screen wait-only" data-state="error" hidden>
+    <strong>Não foi possível carregar data.json</strong>
+    <span>Abra este arquivo por um servidor local (ex: <code>python3 -m http.server</code>) em vez de abrir o HTML diretamente, ou verifique se data.json está na mesma pasta.</span>
+  </div>
+
+  <div class="wait-hide" data-state="content" hidden>
+
+    <header class="topbar">
+      <div class="topbar-inner">
+        <div class="mark">PABLO<span>CYBER</span></div>
+        <nav aria-label="Navegação principal">
+          <a href="#perfil">Perfil</a>
+          <a href="#experiencia">Experiência</a>
+          <a href="#especializacoes">Especializações</a>
+          <a href="#credenciais">Credenciais</a>
+          <a href="#contato">Contato</a>
+        </nav>
+        <a class="btn btn-primary btn-cta" id="topbar-whatsapp" href="#" target="_blank" rel="noopener">Falar agora</a>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div class="hero-kicker">
+          <span class="pulse-dot" aria-hidden="true"></span>
+          <span id="hero-status"></span>
+        </div>
+        <h1><span id="hero-first"></span><span class="last" id="hero-last"></span></h1>
+        <div class="hero-roles" id="hero-roles"></div>
+        <p class="hero-summary" id="hero-current-role"></p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" id="hero-whatsapp" href="#" target="_blank" rel="noopener">WhatsApp direto</a>
+          <a class="btn btn-secondary" id="hero-email" href="#">Enviar e-mail</a>
+        </div>
+
+        <div class="stats" id="stats-grid"></div>
+      </section>
+
+      <section class="section" id="perfil">
+        <div class="section-head">
+          <div>
+            <span class="section-num">01 / Sobre</span>
+            <h2 class="section-title">Perfil <span class="accent">Profissional</span></h2>
+          </div>
+          <p class="section-note">Do suporte técnico à mentalidade de atacante: uma trajetória construída em cima de fundamentos sólidos de TI.</p>
+        </div>
+        <div class="profile-grid">
+          <div class="profile-summary" id="profile-summary"></div>
+          <div class="objective-panel bracket">
+            <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+            <span class="panel-label">objetivo profissional</span>
+            <p id="profile-objective"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="experiencia">
+        <div class="section-head">
+          <div>
+            <span class="section-num">02 / Histórico</span>
+            <h2 class="section-title">Registro de <span class="accent">Experiência</span></h2>
+          </div>
+          <p class="section-note">Entradas ordenadas da mais recente para a mais antiga, como um log de sessão.</p>
+        </div>
+        <div class="log" id="experience-log"></div>
+      </section>
+
+      <section class="section" id="especializacoes">
+        <div class="section-head">
+          <div>
+            <span class="section-num">03 / Escopo</span>
+            <h2 class="section-title">Áreas de <span class="accent">Especialização</span></h2>
+          </div>
+        </div>
+        <div class="spec-field" id="spec-field"></div>
+      </section>
+
+      <section class="section" id="credenciais">
+        <div class="section-head">
+          <div>
+            <span class="section-num">04 / Base</span>
+            <h2 class="section-title">Formação &amp; <span class="accent">Certificações</span></h2>
+          </div>
+        </div>
+        <div class="creds-grid">
+          <div class="edu-card bracket">
+            <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+            <span class="panel-label">formação acadêmica</span>
+            <p class="edu-course" id="edu-course"></p>
+            <p class="edu-status" id="edu-status"></p>
+          </div>
+          <ul class="cert-list" id="cert-list"></ul>
+        </div>
+      </section>
+
+      <section class="section" id="diferenciais">
+        <div class="section-head">
+          <div>
+            <span class="section-num">05 / Vantagens</span>
+            <h2 class="section-title">Principais <span class="accent">Diferenciais</span></h2>
+          </div>
+        </div>
+        <div class="diff-grid" id="diff-grid"></div>
+      </section>
+
+      <section class="section contact-section" id="contato">
+        <div class="contact-panel bracket">
+          <span class="bl" aria-hidden="true"></span><span class="br" aria-hidden="true"></span>
+          <h2>Vamos falar sobre <span class="accent">segurança?</span></h2>
+          <p>Disponível para pentests web, avaliações de Red Team, consultoria em Active Directory e Cloud Security, ou para conversar sobre formação em Ethical Hacking.</p>
+          <div class="contact-actions">
+            <a class="btn btn-primary" id="contact-whatsapp" href="#" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+            <a class="btn btn-secondary" id="contact-email" href="#">contatopablocyberoficial@gmail.com</a>
+          </div>
+          <p class="contact-detail">Respostas normalmente em até 24h úteis.</p>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      PABLO CYBER — <span>Segurança Ofensiva</span> é o meu código
+    </footer>
+
+  </div>
+</div>
+
+<script>
+async function initPortfolio() {
+  const app = document.getElementById('app');
+  const loadingEl = document.querySelector('[data-state="loading"]');
+  const errorEl = document.querySelector('[data-state="error"]');
+  const contentEl = document.querySelector('[data-state="content"]');
+
+  let data;
+  try {
+    const res = await fetch('data.json');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    data = await res.json();
+  } catch (err) {
+    loadingEl.hidden = true;
+    errorEl.hidden = false;
+    app.className = 'state-error';
+    console.error('Falha ao carregar data.json:', err);
+    return;
+  }
+
+  // ---- Top bar / hero CTAs ----
+  document.getElementById('topbar-whatsapp').href = data.contact.whatsapp_link;
+  document.getElementById('hero-whatsapp').href = data.contact.whatsapp_link;
+  document.getElementById('contact-whatsapp').href = data.contact.whatsapp_link;
+
+  const mailHref = 'mailto:' + data.contact.email;
+  document.getElementById('hero-email').href = mailHref;
+  document.getElementById('hero-email').textContent = 'Enviar e-mail';
+  const contactEmailEl = document.getElementById('contact-email');
+  contactEmailEl.href = mailHref;
+  contactEmailEl.textContent = data.contact.email;
+
+  // ---- Hero ----
+  document.getElementById('hero-status').textContent = data.brand.status;
+  document.getElementById('hero-first').textContent = data.brand.name_first + ' ';
+  document.getElementById('hero-last').textContent = data.brand.name_last;
+
+  const rolesWrap = document.getElementById('hero-roles');
+  data.brand.roles.forEach(r => {
+    const el = document.createElement('span');
+    el.className = 'role-chip';
+    el.textContent = r;
+    rolesWrap.appendChild(el);
+  });
+
+  document.getElementById('hero-current-role').innerHTML =
+    'Atualmente atuando como <strong>' + data.profile.current_role + '</strong>, formando profissionais com foco em prática e mentalidade ofensiva.';
+
+  const statsGrid = document.getElementById('stats-grid');
+  data.stats.forEach(s => {
+    const el = document.createElement('div');
+    el.className = 'stat';
+    el.innerHTML = '<div class="stat-value">' + s.value + '</div><div class="stat-label">' + s.label + '</div>';
+    statsGrid.appendChild(el);
+  });
+
+  // ---- Perfil ----
+  const summaryWrap = document.getElementById('profile-summary');
+  data.profile.summary.forEach(p => {
+    const el = document.createElement('p');
+    el.textContent = p;
+    summaryWrap.appendChild(el);
+  });
+  document.getElementById('profile-objective').textContent = data.profile.objective;
+
+  // ---- Experiência ----
+  const log = document.getElementById('experience-log');
+  data.experience.forEach(job => {
+    const entry = document.createElement('article');
+    entry.className = 'log-entry';
+
+    const meta = document.createElement('div');
+    meta.className = 'log-meta';
+    const statusLine = document.createElement('div');
+    statusLine.className = 'log-status' + (job.current ? '' : ' closed');
+    statusLine.innerHTML = '<span class="dot"></span>' + (job.current ? 'em andamento' : 'concluído');
+    meta.appendChild(statusLine);
+    if (job.period) {
+      const per = document.createElement('div');
+      per.textContent = job.period;
+      meta.appendChild(per);
+    }
+
+    const body = document.createElement('div');
+    const role = document.createElement('h3');
+    role.className = 'log-role';
+    role.textContent = job.role;
+    const org = document.createElement('div');
+    org.className = 'log-org';
+    org.textContent = job.org;
+    const tasks = document.createElement('ul');
+    tasks.className = 'log-tasks';
+    job.tasks.forEach(t => {
+      const li = document.createElement('li');
+      li.textContent = t;
+      tasks.appendChild(li);
+    });
+
+    body.appendChild(role);
+    body.appendChild(org);
+    body.appendChild(tasks);
+
+    entry.appendChild(meta);
+    entry.appendChild(body);
+    log.appendChild(entry);
+  });
+
+  // ---- Especializações ----
+  const specField = document.getElementById('spec-field');
+  data.specializations.forEach(s => {
+    const el = document.createElement('span');
+    el.className = 'spec-tag';
+    el.textContent = s;
+    specField.appendChild(el);
+  });
+
+  // ---- Formação ----
+  document.getElementById('edu-course').textContent = data.education.course;
+  document.getElementById('edu-status').textContent = data.education.status;
+
+  // ---- Certificações ----
+  const certList = document.getElementById('cert-list');
+  data.certifications.forEach((c, i) => {
+    const li = document.createElement('li');
+    const idx = document.createElement('span');
+    idx.className = 'cert-index';
+    idx.textContent = String(i + 1).padStart(2, '0');
+    const label = document.createElement('span');
+    label.textContent = c;
+    li.appendChild(idx);
+    li.appendChild(label);
+    certList.appendChild(li);
+  });
+
+  // ---- Diferenciais ----
+  const diffGrid = document.getElementById('diff-grid');
+  data.differentiators.forEach(d => {
+    const el = document.createElement('div');
+    el.className = 'diff-item';
+    el.textContent = d;
+    diffGrid.appendChild(el);
+  });
+
+  // ---- reveal ----
+  loadingEl.hidden = true;
+  contentEl.hidden = false;
+  app.className = 'state-content';
+}
+
+initPortfolio();
+</script>
+
+</body>
+</html>

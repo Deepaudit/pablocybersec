@@ -1,0 +1,105 @@
+{
+  "brand": {
+    "name_first": "PABLO",
+    "name_last": "CYBER",
+    "handle": "pablocybersec",
+    "roles": ["Pentester Web Pleno", "Ethical Hacking", "Red Team"],
+    "tagline": "Segurança ofensiva é o meu código.",
+    "status": "Disponível para novos projetos e turmas"
+  },
+  "contact": {
+    "email": "contatopablocyberoficial@gmail.com",
+    "whatsapp_display": "+55 16 99622-8445",
+    "whatsapp_link": "https://wa.me/5516996228445"
+  },
+  "stats": [
+    { "value": "5+", "label": "anos de experiência em TI e segurança" },
+    { "value": "AWS", "label": "cloud security em ambiente real" },
+    { "value": "AD", "label": "Active Directory ofensivo e defensivo" },
+    { "value": "APIs", "label": "segurança de aplicações e integrações" }
+  ],
+  "profile": {
+    "current_role": "Professor de Cybersecurity e Ethical Hacking",
+    "summary": [
+      "Profissional de tecnologia e cybersecurity com atuação em suporte técnico, segurança da informação, Ethical Hacking, Pentest Web e Red Team.",
+      "Experiência na análise de vulnerabilidades, segurança de aplicações e APIs, Active Directory e ambientes corporativos, com foco em identificação de riscos, avaliação de segurança e elaboração de relatórios técnicos.",
+      "Atualmente formando e capacitando novos profissionais com foco na prática, mentalidade ofensiva e aplicação real dos conhecimentos em segurança da informação."
+    ],
+    "objective": "Atuar profissionalmente na área de Cibersegurança, com foco em Segurança Ofensiva, Red Team, Ethical Hacking e Análise de Segurança, contribuindo para a identificação de vulnerabilidades, redução de riscos e fortalecimento da segurança das organizações."
+  },
+  "experience": [
+    {
+      "role": "Professor de Cybersecurity e Ethical Hacking",
+      "org": "PabloCyberSec",
+      "period": "Atual",
+      "current": true,
+      "tasks": [
+        "Ministração de aulas práticas e teóricas sobre Cybersecurity, Ethical Hacking e Red Team.",
+        "Formação de alunos do zero ao avançado em Segurança Ofensiva.",
+        "Desenvolvimento de laboratórios, desafios e projetos práticos.",
+        "Mentoria, acompanhamento e evolução técnica dos alunos.",
+        "Foco em metodologia prática, mentalidade de atacante e boas práticas."
+      ]
+    },
+    {
+      "role": "Analista de TI e Técnico de Informática",
+      "org": "Maravilhas do Real",
+      "period": "01/2025 — 07/2026",
+      "current": false,
+      "tasks": [
+        "Suporte técnico a usuários e ambientes de TI.",
+        "Diagnóstico e resolução de problemas de hardware e software.",
+        "Manutenção e configuração de equipamentos e redes.",
+        "Atendimento técnico e resolução de incidentes.",
+        "Apoio à manutenção e segurança dos ambientes de tecnologia."
+      ]
+    },
+    {
+      "role": "Analista de Sistemas & Segurança de Aplicações",
+      "org": "Atuação Profissional",
+      "period": "",
+      "current": false,
+      "tasks": [
+        "Análise e manutenção de aplicações.",
+        "Avaliação de segurança de sistemas.",
+        "Identificação de vulnerabilidades.",
+        "Apoio à implementação de melhorias de segurança.",
+        "Análise de riscos em aplicações."
+      ]
+    }
+  ],
+  "specializations": [
+    "Ethical Hacking",
+    "Red Team",
+    "Segurança Ofensiva",
+    "Segurança de Aplicações",
+    "Segurança de APIs",
+    "Active Directory",
+    "Cloud Security — AWS",
+    "Vulnerability Assessment",
+    "Bug Bounty",
+    "Relatórios Técnicos de Segurança"
+  ],
+  "education": {
+    "course": "Ciência da Computação",
+    "status": "Em andamento"
+  },
+  "certifications": [
+    "Splunk One Security",
+    "Hackers Hive / Metasploit",
+    "Google Cybersecurity",
+    "SQL Estruturado",
+    "AFD — Forense Digital"
+  ],
+  "differentiators": [
+    "5 anos de experiência prática",
+    "Experiência profissional em TI e suporte técnico",
+    "Conhecimentos em Cybersecurity Ofensiva",
+    "Experiência com Ethical Hacking e Red Team",
+    "Conhecimento em segurança de aplicações e APIs",
+    "Conhecimento em Active Directory e Cloud Security",
+    "Capacidade de análise, investigação e resolução de problemas",
+    "Foco em segurança, qualidade e trabalho em equipe",
+    "Didática e foco na formação de profissionais da área"
+  ]
+}
