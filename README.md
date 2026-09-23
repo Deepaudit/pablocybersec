@@ -99,7 +99,7 @@ Segurança de Aplicações
 
 | Canal | Contato |
 |---|---|
-| 📧 E-mail | [contatopablocyberoficial@gmail.com](mailto:contatopablocyberoficial@gmail.com) |
+| 📧 E-mail | [contato@pablocybersec.shop](mailto:contato@pablocybersec.shop) |
 | 💬 WhatsApp | [+55 16 99622-8445](https://wa.me/5516996228445) |
 
 <div align="center">
