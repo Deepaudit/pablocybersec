@@ -23,7 +23,7 @@ Este repositório é o **meu portfólio profissional**, publicado com **GitHub P
 
 <div align="center">
 
-### 🌐 [ACESSAR O PORTFÓLIO AO VIVO](https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/)
+### 🌐 [ACESSAR O PORTFÓLIO AO VIVO](https://SEU-USUARIO.github.io/pablocybersec/)
 
 </div>
 
