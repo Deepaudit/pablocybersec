@@ -90,16 +90,6 @@ Este repositório é o **meu portfólio profissional**, publicado com **GitHub P
 └── README.md
 ```
 
-## 🚀 Como publicar no GitHub Pages
-
-1. Crie um repositório no GitHub (público).
-2. Envie os arquivos `index.html`, `style.css`, `script.js` e `README.md` na raiz.
-3. Vá em **Settings → Pages**.
-4. Em **Build and deployment**, escolha **Deploy from a branch**, selecione a branch `main` e a pasta `/ (root)`.
-5. Salve. Em alguns minutos o site fica em `https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/`.
-
-Para usar um domínio próprio, preencha o campo **Custom domain** na mesma tela e ative **Enforce HTTPS**.
-
 ## 📬 Contato
 
 <div align="center">
